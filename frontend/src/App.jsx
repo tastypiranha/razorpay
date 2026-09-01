@@ -164,17 +164,7 @@ export default function App() {
             Live Transaction Input
           </div>
           
-          <div className="presets-bar">
-            {presets.map((p, idx) => (
-              <button 
-                key={idx} 
-                className="preset-btn"
-                onClick={() => handlePresetSelect(p)}
-              >
-                {p.title}
-              </button>
-            ))}
-          </div>
+
 
           <div className="form-grid">
             <div className="form-group">
