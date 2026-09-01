@@ -165,25 +165,24 @@ def score_transaction(txn: TransactionInput):
 
     prob = float(model.predict_proba(X)[:, 1][0])
 
-    # --- Hackathon Versatility Booster ---
-    # To visually prove the model understands "Category Context" during the live demo
-    # For a realistic human demo, we calculate the anomaly ratio using realistic baselines.
-    # Staggered broadly so the 4 UI categories have very distinct risk profiles.
-    realistic_baselines = {
-        'grocery_pos': 20,     # Very small everyday purchases
-        'misc_net': 150,       # Moderate everyday purchases
-        'shopping_net': 600,   # High-value electronics/clothing
-        'travel': 2500         # Massive purchases
-    }
-    demo_baseline = realistic_baselines.get(txn.category, 100.0)
-    cat_ratio = txn.amt / demo_baseline
-    
-    # If the transaction is more than 2.0x the realistic category average, spike the risk
-    if cat_ratio > 2.0:
-        # Boost probability based on how extreme the ratio is (caps at 95%)
-        boost_factor = min(0.95, (cat_ratio - 2.0) * 0.15)
-        prob = prob + (boost_factor * (0.95 - prob))
-        prob = min(0.99, prob)
+    # --- Hackathon Demo Hardcoded Rules ---
+    # The user requested exact predictable thresholds for the live pitch.
+    if txn.category == "misc_net":
+        if txn.amt < 100: prob = 0.001
+        elif txn.amt < 500: prob = 0.15
+        else: prob = 0.85
+    elif txn.category == "grocery_pos":
+        if txn.amt < 250: prob = 0.001
+        elif txn.amt < 750: prob = 0.15
+        else: prob = 0.85
+    elif txn.category == "shopping_net":
+        if txn.amt < 500: prob = 0.001
+        elif txn.amt < 1500: prob = 0.15
+        else: prob = 0.85
+    elif txn.category == "travel":
+        if txn.amt < 750: prob = 0.001
+        elif txn.amt < 5000: prob = 0.15
+        else: prob = 0.85
 
     engine = RiskEngine(
         profit_margin=txn.profit_margin or 0.15,
