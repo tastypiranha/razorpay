@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { 
   ShieldCheck, Activity, DollarSign, TrendingUp, Zap, 
-  ArrowRight, ShieldAlert, CheckCircle, RefreshCw, FileText
+  ArrowRight, ShieldAlert, CheckCircle, RefreshCw, FileText,
+  Database, Cpu, Target
 } from 'lucide-react';
 
 const API_BASE = 'http://localhost:8000/api';
@@ -120,6 +121,36 @@ export default function App() {
       </header>
 
 
+
+      {/* PIPELINE VISUALIZATION */}
+      <div className="pipeline-container">
+        <div className="pipeline-title">Autonomous Evaluation Pipeline</div>
+        <div className="pipeline-flow">
+          <div className="pipe-step">
+            <div className="pipe-icon-box"><Database size={24} /></div>
+            <div className="pipe-name">Rule Engine</div>
+            <div className="pipe-desc">Extracts hardcoded transaction rules</div>
+          </div>
+          <div className="pipe-arrow"><ArrowRight size={20} /></div>
+          <div className="pipe-step">
+            <div className="pipe-icon-box"><Cpu size={24} /></div>
+            <div className="pipe-name">Fraud Base Score</div>
+            <div className="pipe-desc">Assigns base fraud risk (p) based on category amounts</div>
+          </div>
+          <div className="pipe-arrow"><ArrowRight size={20} /></div>
+          <div className="pipe-step">
+            <div className="pipe-icon-box"><Target size={24} /></div>
+            <div className="pipe-name">Expected Utility</div>
+            <div className="pipe-desc">Computes financial risk vs. verification friction</div>
+          </div>
+          <div className="pipe-arrow"><ArrowRight size={20} /></div>
+          <div className="pipe-step">
+            <div className="pipe-icon-box"><ShieldCheck size={24} /></div>
+            <div className="pipe-name">Decision Optimizer</div>
+            <div className="pipe-desc">Outputs Action that maximizes Merchant ROI</div>
+          </div>
+        </div>
+      </div>
 
       {/* WORKSPACE */}
       <div className="workspace">
