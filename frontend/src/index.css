@@ -340,8 +340,8 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  width: 220px;
-  padding: 16px;
+  width: 170px;
+  padding: 12px;
   border-radius: var(--radius-md);
   border: 1px solid transparent;
   transition: all 0.3s ease;
@@ -356,15 +356,15 @@ body {
 }
 
 .pipe-icon-box {
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   background: var(--bg-input);
   border: 1px solid var(--border-color);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   color: var(--primary);
   transition: all 0.3s ease;
 }
@@ -377,14 +377,14 @@ body {
 }
 
 .pipe-name {
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 700;
   color: var(--text-main);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .pipe-desc {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--text-muted);
   line-height: 1.4;
 }
