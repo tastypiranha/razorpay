@@ -119,40 +119,7 @@ export default function App() {
         <div className="track-badge">Track 02: AI Risk Manager</div>
       </header>
 
-      {/* KPI ROW */}
-      <div className="kpi-row">
-        <div className="kpi-card">
-          <div className="kpi-title">Net Loss Prevented</div>
-          <div className="kpi-value val-green mono">
-            ${headline.net_loss_prevented_vs_allow_all ? headline.net_loss_prevented_vs_allow_all.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) : '0'}
-          </div>
-          <div className="kpi-sub">vs. Allow-All Baseline</div>
-        </div>
 
-        <div className="kpi-card">
-          <div className="kpi-title">Savings vs. Flat Rule</div>
-          <div className="kpi-value val-amber mono">
-            +${headline.net_savings_vs_flat_threshold ? headline.net_savings_vs_flat_threshold.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) : '0'}
-          </div>
-          <div className="kpi-sub">By stopping false-positives</div>
-        </div>
-
-        <div className="kpi-card">
-          <div className="kpi-title">Fraud Loss Eliminated</div>
-          <div className="kpi-value mono" style={{ color: '#ffffff' }}>
-            {headline.percent_fraud_loss_eliminated ? headline.percent_fraud_loss_eliminated.toFixed(1) : '0.0'}%
-          </div>
-          <div className="kpi-sub">Of total possible risk exposure</div>
-        </div>
-
-        <div className="kpi-card">
-          <div className="kpi-title">System ROI</div>
-          <div className="kpi-value val-purple mono">
-            {headline.protection_roi_multiple ? headline.protection_roi_multiple.toFixed(1) : '0.0'}x
-          </div>
-          <div className="kpi-sub">Engine Recall: {detector.recall ? (detector.recall * 100).toFixed(1) : '0'}%</div>
-        </div>
-      </div>
 
       {/* WORKSPACE */}
       <div className="workspace">
