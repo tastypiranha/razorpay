@@ -165,37 +165,6 @@ def score_transaction(txn: TransactionInput):
 
     prob = float(model.predict_proba(X)[:, 1][0])
 
-    # --- Hackathon Demo Hardcoded Rules ---
-    # The user requested exact predictable thresholds for the live pitch.
-    if txn.category == "misc_net":
-        if txn.amt < 100: base_p = 0.001
-        elif txn.amt < 500: base_p = 0.02
-        else: base_p = 0.82
-    elif txn.category == "grocery_pos":
-        if txn.amt < 250: base_p = 0.001
-        elif txn.amt < 750: base_p = 0.02
-        else: base_p = 0.82
-    elif txn.category == "shopping_net":
-        if txn.amt < 500: base_p = 0.001
-        elif txn.amt < 1500: base_p = 0.02
-        else: base_p = 0.82
-    elif txn.category == "travel":
-        if txn.amt < 750: base_p = 0.001
-        elif txn.amt < 5000: base_p = 0.02
-        else: base_p = 0.82
-    else:
-        base_p = 0.001
-
-    # Add reproducible cosmetic fuzz so the UI looks dynamic and authentic
-    if base_p == 0.001:
-        prob = 0.001 + (txn.amt % 10) * 0.0004
-    elif base_p == 0.02:
-        prob = 0.02 + (txn.amt % 50) * 0.001
-    else:
-        prob = 0.82 + (txn.amt % 100) * 0.0015
-        
-    prob = min(0.99, float(prob))
-
     engine = RiskEngine(
         profit_margin=txn.profit_margin or 0.15,
         risk_tolerance_el=txn.risk_tolerance_el or 5.0,
